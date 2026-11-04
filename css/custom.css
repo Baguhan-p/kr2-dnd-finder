@@ -1,0 +1,80 @@
+body {
+  min-height: 100vh;
+  background-color: #f4f1ea;
+}
+
+.brand-logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.avatar-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.card-master .avatar-circle,
+.card-player .avatar-circle {
+  width: 80px;
+  height: 80px;
+  font-size: 1.8rem;
+}
+
+.hero-carousel .carousel-item {
+  min-height: 320px;
+  background: linear-gradient(135deg, #2b1d3a 0%, #4a2545 50%, #1f3a5f 100%);
+  color: #fff;
+}
+
+.hero-carousel .carousel-caption {
+  bottom: 20%;
+}
+
+.rating-stars {
+  color: #e0a100;
+  letter-spacing: 2px;
+}
+
+.request-banner {
+  background: linear-gradient(135deg, #3a2545, #1f3a5f);
+  color: #fff;
+  border-radius: .5rem;
+}
+
+.list-group-item.participant {
+  background: #faf8f4;
+}
+
+.footer-dark {
+  background-color: #1f1726;
+  color: #cfc6d6;
+}
+
+.footer-dark a {
+  color: #d8b4fe;
+  text-decoration: none;
+}
+
+.footer-dark a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.filter-sticky {
+  position: sticky;
+  top: 80px;
+}
+
+@media (max-width: 991px) {
+  .filter-sticky {
+    position: static;
+  }
+}

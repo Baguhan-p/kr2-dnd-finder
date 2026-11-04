@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="D&D Finder — учебный сервис поиска мастеров и игроков для настольных ролевых игр на Bootstrap.">
+  <title>Главная — D&D Finder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero-carousel carousel slide mb-5" id="heroCarousel" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container py-5 text-center text-white">
+            <h1 class="display-5 fw-bold">Найди своего мастера или игроков</h1>
+            <p class="lead">Учебный сервис для поиска компаний в D&D, Pathfinder, Call of Cthulhu и других системах.</p>
+            <a class="btn btn-light btn-lg" href="search.html">Открыть поиск</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container py-5 text-center text-white">
+            <h2 class="display-6 fw-bold">Мастера публикуют кампании</h2>
+            <p class="lead">Выбирайте стол по системе, формату и расписанию.</p>
+            <a class="btn btn-outline-light btn-lg" href="master-requests.html">Заявки мастеров</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container py-5 text-center text-white">
+            <h2 class="display-6 fw-bold">Игроки ищут приключения</h2>
+            <p class="lead">Оставляйте анкеты и откликайтесь на заявки.</p>
+            <a class="btn btn-outline-light btn-lg" href="player-requests.html">Заявки игроков</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </section>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">Новые анкеты мастеров</h2>
+        <a class="btn btn-outline-primary" href="masters.html">Все мастера</a>
+      </div>
+      <div class="row g-4" id="newMasters"></div>
+    </section>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">Новые анкеты игроков</h2>
+        <a class="btn btn-outline-primary" href="players.html">Все игроки</a>
+      </div>
+      <div class="row g-4" id="newPlayers"></div>
+    </section>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">Мастера ищут игроков</h2>
+        <a class="btn btn-outline-primary" href="master-requests.html">Все заявки</a>
+      </div>
+      <div class="row g-4" id="newMasterReqs"></div>
+    </section>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">Игроки ищут мастера</h2>
+        <a class="btn btn-outline-primary" href="player-requests.html">Все заявки</a>
+      </div>
+      <div class="row g-4" id="newPlayerReqs"></div>
+    </section>
+
+    <section class="container my-5">
+      <h2 class="text-center mb-4">Преимущества сервиса</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3"><div class="p-4 border rounded h-100 bg-white shadow-sm"><h3 class="h5">🎲 Все системы</h3><p class="mb-0 text-muted small">D&D, Pathfinder, Call of Cthulhu, Cyberpunk и другие в одном месте.</p></div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="p-4 border rounded h-100 bg-white shadow-sm"><h3 class="h5">🖥️ Онлайн и офлайн</h3><p class="mb-0 text-muted small">Фильтр по формату игры и городу для офлайн-встреч.</p></div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="p-4 border rounded h-100 bg-white shadow-sm"><h3 class="h5">⭐ Рейтинги и отзывы</h3><p class="mb-0 text-muted small">Выбирайте проверенных мастеров и игроков по отзывам сообщества.</p></div></div>
+        <div class="col-12 col-md-6 col-lg-3"><div class="p-4 border rounded h-100 bg-white shadow-sm"><h3 class="h5">⚡ Быстрый поиск</h3><p class="mb-0 text-muted small">Глобальный поиск по анкетам и заявкам с фильтрами.</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("newMasters").innerHTML = masters.slice(0,3).map(cardMaster).join("");
+      document.getElementById("newPlayers").innerHTML = players.slice(0,3).map(cardPlayer).join("");
+      document.getElementById("newMasterReqs").innerHTML = masterRequests.slice(0,3).map(cardMasterRequest).join("");
+      document.getElementById("newPlayerReqs").innerHTML = playerRequests.slice(0,3).map(cardPlayerRequest).join("");
+    });
+  </script>
+</body>
+</html>
