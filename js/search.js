@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(location.search);
   if (params.get("q")) document.getElementById("qInput").value = params.get("q");
+  const t = params.get("type");
+  if (t) document.getElementById("typeSelect").value = t;
 
   function runSearch() {
     const q = (document.getElementById("qInput").value || "").toLowerCase().trim();

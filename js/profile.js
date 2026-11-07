@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   '<div class="tab-content card shadow-sm border-top-0" style="border-top-left-radius:0;border-top-right-radius:0">' +
     '<div class="tab-pane fade show active p-4" id="tabOverview" role="tabpanel">' +
       '<h2 class="h5">Системы</h2><p>' + person.systems.map(s=>'<span class="badge bg-secondary me-1">'+s+'</span>').join("") + '</p>' +
-      '<h2 class="h5 mt-3">О себе</h2><p class="mb-0">' + person.bio + '</p>' +
+            '<h2 class="h5 mt-3">О себе</h2><p class="mb-0 dropcap">' + person.bio + '</p>' +
     '</div>' +
     '<div class="tab-pane fade p-4" id="tabReviews" role="tabpanel"><h2 class="h5">Отзывы</h2>' + reviews + '</div>' +
     '<div class="tab-pane fade p-4" id="tabReqs" role="tabpanel"><h2 class="h5">Активные заявки</h2><ul class="list-group">' + reqCards + '</ul></div>' +
