@@ -40,10 +40,22 @@ function getInitials(name) {
 function avatarHtml(person, size) {
   const px = size || 64;
   const fs = Math.round(px * 0.4);
+  const initials = getInitials(person.name);
+  const bg = colorFromName(person.name);
+  const circle = '<div class="avatar-circle" style="width:' + px + 'px;height:' + px + 'px;font-size:' + fs + 'px;background:' + bg + '">' + initials + '</div>';
   if (person && person.avatar) {
-    return '<img src="' + person.avatar + '" alt="' + person.name + '" class="avatar-photo" style="width:' + px + 'px;height:' + px + 'px;">';
+    return '<img src="' + person.avatar + '" alt="' + person.name + '" class="avatar-photo" style="width:' + px + 'px;height:' + px + 'px;" data-ini="' + initials + '" data-bg="' + bg + '" data-fs="' + fs + '" data-px="' + px + '" onerror="avatarFallback(this)">';
   }
-  return '<div class="avatar-circle" style="width:' + px + 'px;height:' + px + 'px;font-size:' + fs + 'px;background:' + colorFromName(person.name) + '">' + getInitials(person.name) + '</div>';
+  return circle;
+}
+
+function avatarFallback(img) {
+  const d = img.dataset;
+  const div = document.createElement('div');
+  div.className = 'avatar-circle';
+  div.style.cssText = 'width:' + d.px + 'px;height:' + d.px + 'px;font-size:' + d.fs + 'px;background:' + d.bg;
+  div.textContent = d.ini;
+  img.replaceWith(div);
 }
 
 function colorFromName(name) {

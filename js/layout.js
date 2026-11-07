@@ -66,13 +66,11 @@ function renderFooter() {
         '<div class="col-12 col-lg-3">' +
           '<h3 class="h6 text-white">О сервисе</h3>' +
           '<p class="small mb-2">Рейтинги, отзывы, бронирование мест и живой поиск по системам, формату и городу.</p>' +
-          '<a class="btn btn-sm btn-outline-primary" href="masters.html">Найти мастера</a>' +
         '</div>' +
       '</div>' +
       '<hr class="border-secondary">' +
       '<div class="d-flex flex-column flex-md-row justify-content-between small">' +
         '<span>&copy; 2026 D&amp;D Finder. Все права защищены.</span>' +
-        '<span>Фронтенд и бэкенд разработка</span>' +
       '</div>' +
     '</div>' +
   '</footer>';
