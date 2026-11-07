@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     '<li class="breadcrumb-item active">' + person.name + '</li></ol></nav>' +
   '<div class="card shadow-sm mb-4"><div class="card-body">' +
     '<div class="d-flex flex-column flex-md-row align-items-md-center gap-3">' +
-      '<div class="avatar-circle" style="width:96px;height:96px;font-size:2rem;background:' + colorFromName(person.name) + '">' + getInitials(person.name) + '</div>' +
+      avatarHtml(person, 96) +
       '<div class="flex-grow-1">' +
         '<h1 class="h3 mb-1">' + person.name + ' <span class="badge bg-' + (type==="master"?"primary":"info text-dark") + '">' + (type==="master"?"Мастер":"Игрок") + '</span></h1>' +
         '<p class="mb-1">' + starsHtml(person.rating) + ' · опыт ' + person.experience + ' лет</p>' +
@@ -55,4 +55,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("contactBtn").addEventListener("click", () =>
     openContact("Связаться с " + person.name, "Напишите сообщение — мы передадим его пользователю."));
-});
+ });

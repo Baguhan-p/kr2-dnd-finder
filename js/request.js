@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
           '<button class="btn btn-outline-primary" type="submit">Отправить</button></form>' +
         '</div></div>' +
     '</div>' +
-    '<div class="col-12 col-lg-4">' +
+    '<div class="col-12 col-lg-4">' + 
       '<div class="card shadow-sm mb-4"><div class="card-body text-center">' +
-        '<div class="avatar-circle mx-auto mb-2" style="background:' + colorFromName(author.name) + '">' + getInitials(author.name) + '</div>' +
+        '<div class="mx-auto mb-2" style="width:64px">' + avatarHtml(author, 64) + '</div>' +
         '<h3 class="h6">' + author.name + '</h3><p class="small text-muted mb-2">' + (type==="master"?"Мастер":"Игрок") + ' · опыт ' + author.experience + ' лет</p>' +
         '<a class="btn btn-sm btn-outline-secondary" href="profile.html?type=' + (type==="master"?"master":"player") + '&id=' + author.id + '">Анкета</a>' +
       '</div></div>' +
@@ -101,6 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
     card.innerHTML = '<div class="card-body py-2"><strong>Вы</strong><p class="mb-0 small">' + txt.replace(/</g,"&lt;") + '</p></div>';
     cmForm.parentElement.insertBefore(card, cmForm);
     cmForm.reset();
-    showToast("Комментарий добавлен.", "info");
+    showToast("Комментарий  добавлен.", "info");
   });
-});
+  });
