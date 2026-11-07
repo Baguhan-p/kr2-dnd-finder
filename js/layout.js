@@ -2,10 +2,6 @@ const NAV_ITEMS = [
   { href: "index.html", label: "Главная" },
   { href: "masters.html", label: "Мастера" },
   { href: "players.html", label: "Игроки" },
-  { href: "master-requests.html", label: "Мастера ищут" },
-  { href: "player-requests.html", label: "Игроки ищут" },
-  { href: "search.html", label: "Поиск" },
-  { href: "faq.html", label: "FAQ" },
   { href: "support.html", label: "Поддержка" }
 ];
 
@@ -44,39 +40,39 @@ function renderFooter() {
     '<div class="container">' +
       '<div class="row g-4">' +
         '<div class="col-12 col-md-6 col-lg-3">' +
-          '<h3 class="h6 text-white">D&amp;D Finder</h3>' +
-          '<p class="small mb-0">Учебный сервис поиска мастеров и игроков для настольных ролевых игр.</p>' +
+          '<h3 class="h6 brand-logo">🐉 D&amp;D Finder</h3>' +
+          '<p class="small mb-0">Платформа, которая соединяет мастеров и игроков для настольных ролевых игр.</p>' +
         '</div>' +
         '<div class="col-6 col-lg-3">' +
           '<h3 class="h6 text-white">Разделы</h3>' +
           '<ul class="list-unstyled small">' +
-            '<li><a href="masters.html">Анкеты мастеров</a></li>' +
-            '<li><a href="players.html">Анкеты игроков</a></li>' +
-            '<li><a href="master-requests.html">Мастера ищут игроков</a></li>' +
-            '<li><a href="player-requests.html">Игроки ищут мастера</a></li>' +
-          '</ul>' +
-        '</div>' +
-        '<div class="col-6 col-lg-3">' +
-          '<h3 class="h6 text-white">Помощь</h3>' +
-          '<ul class="list-unstyled small">' +
-            '<li><a href="search.html">Глобальный поиск</a></li>' +
-            '<li><a href="faq.html">Частые вопросы</a></li>' +
-            '<li><a href="support.html">Техподдержка</a></li>' +
+            '<li><a href="index.html">Главная</a></li>' +
+            '<li><a href="masters.html">Мастера</a></li>' +
+            '<li><a href="players.html">Игроки</a></li>' +
+            '<li><a href="support.html">Поддержка</a></li>' +
+            '<li><a href="masters.html#requests">Заявки мастеров</a></li>' +
+            '<li><a href="players.html#requests">Заявки игроков</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="col-12 col-lg-3">' +
           '<h3 class="h6 text-white">Контакты</h3>' +
           '<ul class="list-unstyled small">' +
-            '<li>✉️ support@dndfinder.ru</li>' +
+            '<li>📍 г. Москва, ул. Учебная, д. 1</li>' +
             '<li>📞 +7 (900) 123-45-67</li>' +
-            '<li>📍 г. Москва, учебный проект</li>' +
+            '<li>🕒 Пн–Пт 9:00–20:00, Сб–Вс 10:00–18:00</li>' +
+            '<li>✉️ support@dndfinder.ru</li>' +
           '</ul>' +
+        '</div>' +
+        '<div class="col-12 col-lg-3">' +
+          '<h3 class="h6 text-white">О сервисе</h3>' +
+          '<p class="small mb-2">Рейтинги, отзывы, бронирование мест и живой поиск по системам, формату и городу.</p>' +
+          '<a class="btn btn-sm btn-outline-primary" href="masters.html">Найти мастера</a>' +
         '</div>' +
       '</div>' +
       '<hr class="border-secondary">' +
       '<div class="d-flex flex-column flex-md-row justify-content-between small">' +
-        '<span>&copy; 2026 D&amp;D Finder. Учебный проект.</span>' +
-        '<span>Дисциплина: Фронтенд и бэкенд разработка</span>' +
+        '<span>&copy; 2026 D&amp;D Finder. Все права защищены.</span>' +
+        '<span>Фронтенд и бэкенд разработка</span>' +
       '</div>' +
     '</div>' +
   '</footer>';
