@@ -55,4 +55,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("contactBtn").addEventListener("click", () =>
     openContact("Связаться с " + person.name, "Напишите сообщение — мы передадим его пользователю."));
-});
+ });
