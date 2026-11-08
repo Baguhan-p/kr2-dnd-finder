@@ -38,14 +38,14 @@ function renderFooter() {
   return '' +
   '<footer class="footer-dark py-4 mt-5">' +
     '<div class="container">' +
-      '<div class="row g-4">' +
-        '<div class="col-12 col-md-6 col-lg-3">' +
+      '<div class="row g-4 align-items-start">' +
+        '<div class="col-12 col-md-4 text-center text-md-start">' +
           '<h3 class="h6 brand-logo">🐉 D&amp;D Finder</h3>' +
-          '<p class="small mb-0">Платформа, которая соединяет мастеров и игроков для настольных ролевых игр.</p>' +
+          '<p class="small mb-0">Платформа для поиска мастеров и игроков настольных ролевых игр.</p>' +
         '</div>' +
-        '<div class="col-6 col-lg-3">' +
+        '<div class="col-12 col-md-4 text-center">' +
           '<h3 class="h6 text-white">Разделы</h3>' +
-          '<ul class="list-unstyled small">' +
+          '<ul class="list-unstyled small mb-0">' +
             '<li><a href="index.html">Главная</a></li>' +
             '<li><a href="masters.html">Мастера</a></li>' +
             '<li><a href="players.html">Игроки</a></li>' +
@@ -54,22 +54,18 @@ function renderFooter() {
             '<li><a href="players.html#requests">Заявки игроков</a></li>' +
           '</ul>' +
         '</div>' +
-        '<div class="col-12 col-lg-3">' +
+        '<div class="col-12 col-md-4 text-center text-md-end">' +
           '<h3 class="h6 text-white">Контакты</h3>' +
-          '<ul class="list-unstyled small">' +
+          '<ul class="list-unstyled small mb-0">' +
             '<li>📍 г. Москва, ул. Учебная, д. 1</li>' +
             '<li>📞 +7 (900) 123-45-67</li>' +
             '<li>🕒 Пн–Пт 9:00–20:00, Сб–Вс 10:00–18:00</li>' +
             '<li>✉️ support@dndfinder.ru</li>' +
           '</ul>' +
         '</div>' +
-        '<div class="col-12 col-lg-3">' +
-          '<h3 class="h6 text-white">О сервисе</h3>' +
-          '<p class="small mb-2">Рейтинги, отзывы, бронирование мест и живой поиск по системам, формату и городу.</p>' +
-        '</div>' +
       '</div>' +
-      '<hr class="border-secondary">' +
-      '<div class="d-flex flex-column flex-md-row justify-content-between small">' +
+      '<hr class="border-secondary mt-4">' +
+      '<div class="text-center small">' +
         '<span>&copy; 2026 D&amp;D Finder. Все права защищены.</span>' +
       '</div>' +
     '</div>' +
