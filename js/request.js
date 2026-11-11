@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const r = type === "master" ? masterRequests.find(x=>x.id===id) : playerRequests.find(x=>x.id===id);
   if (!r) { box.innerHTML = '<div class="alert alert-danger" role="alert">Заявка не найдена.</div>'; return; }
 
-  const author = type === "master" ? masters.find(m=>m.id===r.masterId) : players.find(p=>p.id===r.playerId);
+  const author = (type === "master" ? masters.find(m=>m.id===r.masterId) : players.find(p=>p.id===r.playerId)) || { id: null, name: r.authorName || "Автор заявки", experience: 0, systems: [], city: r.city || "", format: r.format, bio: "", reviews: [] };
   const isFull = type === "master" && r.slotsFree === 0;
 
   let infoRows = "";
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<div class="card shadow-sm mb-4"><div class="card-body text-center">' +
         '<div class="mx-auto mb-2" style="width:64px">' + avatarHtml(author, 64) + '</div>' +
         '<h3 class="h6">' + author.name + '</h3><p class="small text-muted mb-2">' + (type==="master"?"Мастер":"Игрок") + ' · опыт ' + author.experience + ' лет</p>' +
-        '<a class="btn btn-sm btn-outline-secondary" href="profile.html?type=' + (type==="master"?"master":"player") + '&id=' + author.id + '">Анкета</a>' +
+        (author.id ? '<a class="btn btn-sm btn-outline-secondary" href="profile.html?type=' + (type==="master"?"master":"player") + '&id=' + author.id + '">Анкета</a>' : '<span class="badge bg-secondary">Пользователь сайта</span>') +
       '</div></div>' +
       '<button class="btn ' + (isFull ? "btn-secondary disabled" : "btn-success w-100 mb-2") + '" id="actionBtn" ' + (isFull?"disabled":"") + '>' +
         (type==="master" ? (isFull ? "Мест нет" : "Зарезервировать место") : "Откликнуться") + '</button>' +

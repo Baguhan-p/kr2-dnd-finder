@@ -79,3 +79,28 @@ function starsHtml(rating) {
     '</svg>';
   return die + ' <span style="color:' + color + ';font-weight:600;">' + rating.toFixed(1) + '</span>';
 }
+
+const FAV_KEY = "dndFavorites";
+const PROFILE_KEY = "dndMyProfile";
+
+function getFavorites() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch (e) { return []; }
+}
+function isFavorite(key) { return getFavorites().includes(key); }
+function toggleFavorite(key) {
+  let list = getFavorites();
+  list = list.includes(key) ? list.filter(k => k !== key) : list.concat(key);
+  localStorage.setItem(FAV_KEY, JSON.stringify(list));
+  return list.includes(key);
+}
+function getMyProfile() {
+  try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || null; } catch (e) { return null; }
+}
+function saveMyProfile(p) { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); }
+
+(function mergeCustomRequests() {
+  try {
+    (JSON.parse(localStorage.getItem("customMasterRequests")) || []).forEach(r => masterRequests.unshift(r));
+    (JSON.parse(localStorage.getItem("customPlayerRequests")) || []).forEach(r => playerRequests.unshift(r));
+  } catch (e) {}
+})();
