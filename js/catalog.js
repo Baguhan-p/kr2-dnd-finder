@@ -14,7 +14,10 @@ function cardMaster(m) {
         '</ul>' +
         '<p class="mb-1 small">📍 ' + m.city + ' · ' + m.format + '</p>' +
         '<p class="mb-3">' + starsHtml(m.rating) + '</p>' +
-        '<a class="btn btn-primary mt-auto" href="profile.html?type=master&id=' + m.id + '">Профиль</a>' +
+        '<div class="d-flex gap-2 mt-auto">' +
+          '<a class="btn btn-primary flex-grow-1" href="profile.html?type=master&id=' + m.id + '">Профиль</a>' +
+          '<button class="btn btn-outline-danger fav-btn" type="button" data-fav="master:' + m.id + '" aria-label="В избранное" aria-pressed="false">♡</button>' +
+        '</div>' +
       '</div>' +
     '</div>' +
   '</div>';
@@ -35,14 +38,18 @@ function cardPlayer(p) {
           '<li class="list-inline-item">🎲 ' + p.systems.join(", ") + '</li>' +
         '</ul>' +
         '<p class="mb-3 small">📍 ' + p.city + ' · ' + p.format + '</p>' +
-        '<a class="btn btn-outline-primary mt-auto" href="profile.html?type=player&id=' + p.id + '">Профиль</a>' +
+        '<div class="d-flex gap-2 mt-auto">' +
+          '<a class="btn btn-outline-primary flex-grow-1" href="profile.html?type=player&id=' + p.id + '">Профиль</a>' +
+          '<button class="btn btn-outline-danger fav-btn" type="button" data-fav="player:' + p.id + '" aria-label="В избранное" aria-pressed="false">♡</button>' +
+        '</div>' +
       '</div>' +
     '</div>' +
   '</div>';
 }
 
 function cardMasterRequest(r) {
-  const m = masters.find(x => x.id === r.masterId) || { name: "—" };
+  const m = masters.find(x => x.id === r.masterId);
+  const authorLink = m ? '<a href="profile.html?type=master&id=' + m.id + '">' + m.name + '</a>' : (r.authorName || "—");
   const full = r.slotsFree === 0;
   return '<div class="col-12 col-md-6 col-lg-4">' +
     '<div class="card h-100 shadow-sm">' +
@@ -51,7 +58,7 @@ function cardMasterRequest(r) {
           '<h2 class="card-title h5">' + r.campaign + '</h2>' +
           '<span class="badge ' + (full ? "bg-danger" : "bg-success") + '">' + (full ? "Мест нет" : "Свободно: " + r.slotsFree) + '</span>' +
         '</div>' +
-        '<p class="card-text text-muted small mb-2">🎯 Мастер: <a href="profile.html?type=master&id=' + r.masterId + '">' + m.name + '</a></p>' +
+        '<p class="card-text text-muted small mb-2">🎯 Мастер: ' + authorLink + '</p>' +
         '<ul class="list-unstyled small mb-3 flex-grow-1">' +
           '<li>🎲 ' + r.system + '</li><li>🖥️ ' + r.format + '</li>' +
           '<li>📍 ' + r.place + '</li><li>🕒 ' + r.time + '</li>' +
@@ -63,12 +70,13 @@ function cardMasterRequest(r) {
 }
 
 function cardPlayerRequest(r) {
-  const p = players.find(x => x.id === r.playerId) || { name: "—" };
+  const p = players.find(x => x.id === r.playerId);
+  const authorLink = p ? '<a href="profile.html?type=player&id=' + p.id + '">' + p.name + '</a>' : (r.authorName || "—");
   return '<div class="col-12 col-md-6 col-lg-4">' +
     '<div class="card h-100 shadow-sm">' +
       '<div class="card-body d-flex flex-column">' +
         '<h2 class="card-title h5 mb-2">Ищу мастера</h2>' +
-        '<p class="card-text text-muted small mb-2">🎮 Игрок: <a href="profile.html?type=player&id=' + r.playerId + '">' + p.name + '</a></p>' +
+        '<p class="card-text text-muted small mb-2">🎮 Игрок: ' + authorLink + '</p>' +
         '<ul class="list-unstyled small mb-3 flex-grow-1">' +
           '<li>🎲 ' + r.system + '</li><li>🖥️ ' + r.format + '</li>' +
           '<li>📍 ' + r.city + '</li><li>🕒 ' + r.time + '</li>' +
@@ -81,10 +89,10 @@ function cardPlayerRequest(r) {
 }
 
 const CATALOG_CONFIG = {
-  masters:          { data: () => masters,        card: cardMaster,        sortOpts: [["rating","По рейтингу"],["experience","По опыту"],["name","По имени"]] },
-  players:          { data: () => players,        card: cardPlayer,        sortOpts: [["rating","По рейтингу"],["experience","По опыту"],["name","По имени"]] },
-  "master-requests":{ data: () => masterRequests, card: cardMasterRequest, sortOpts: [["slotsFree","По свободным местам"],["time","По времени"]] },
-  "player-requests":{ data: () => playerRequests, card: cardPlayerRequest, sortOpts: [["time","По времени"],["system","По системе"]] }
+  masters: { data: () => masters, card: cardMaster, sortOpts: [["rating", "По рейтингу"], ["experience", "По опыту"], ["name", "По имени"]] },
+  players: { data: () => players, card: cardPlayer, sortOpts: [["rating", "По рейтингу"], ["experience", "По опыту"], ["name", "По имени"]] },
+  "master-requests": { data: () => masterRequests, card: cardMasterRequest, sortOpts: [["slotsFree", "По свободным местам"], ["time", "По времени"]] },
+  "player-requests": { data: () => playerRequests, card: cardPlayerRequest, sortOpts: [["time", "По времени"], ["system", "По системе"]] }
 };
 
 const TYPE_PAIRS = {
@@ -101,7 +109,7 @@ function buildFilterForm() {
   if (!filterBox) return;
   if (type === "masters" || type === "players") {
     const sysChecks = SYSTEMS.map(s =>
-      '<div class="form-check"><input class="form-check-input" type="checkbox" name="system" value="' + s.trim() + '" id="fs' + s.replace(/\W/g,"") + '"><label class="form-check-label" for="fs' + s.replace(/\W/g,"") + '">' + s.trim() + '</label></div>'
+      '<div class="form-check"><input class="form-check-input" type="checkbox" name="system" value="' + s.trim() + '" id="fs' + s.replace(/\W/g, "") + '"><label class="form-check-label" for="fs' + s.replace(/\W/g, "") + '">' + s.trim() + '</label></div>'
     ).join("");
     filterBox.innerHTML = '<h3 class="h6">Системы</h3>' + sysChecks +
       '<div class="mt-3"><label class="form-label" for="fFormat">Формат</label><select id="fFormat" class="form-select"><option value="">Любой</option>' + FORMATS.map(f => '<option>' + f + '</option>').join("") + '</select></div>' +
@@ -165,15 +173,15 @@ function sortList(list) {
   const type = catState.type, sort = catState.sort;
   const arr = [...list];
   if (type === "masters" || type === "players") {
-    if (sort === "rating") arr.sort((a,b)=>b.rating-a.rating);
-    else if (sort === "experience") arr.sort((a,b)=>b.experience-a.experience);
-    else if (sort === "name") arr.sort((a,b)=>a.name.localeCompare(b.name,"ru"));
+    if (sort === "rating") arr.sort((a, b) => b.rating - a.rating);
+    else if (sort === "experience") arr.sort((a, b) => b.experience - a.experience);
+    else if (sort === "name") arr.sort((a, b) => a.name.localeCompare(b.name, "ru"));
   } else if (type === "master-requests") {
-    if (sort === "slotsFree") arr.sort((a,b)=>b.slotsFree-a.slotsFree);
-    else if (sort === "time") arr.sort((a,b)=>a.time.localeCompare(b.time,"ru"));
+    if (sort === "slotsFree") arr.sort((a, b) => b.slotsFree - a.slotsFree);
+    else if (sort === "time") arr.sort((a, b) => a.time.localeCompare(b.time, "ru"));
   } else {
-    if (sort === "time") arr.sort((a,b)=>a.time.localeCompare(b.time,"ru"));
-    else if (sort === "system") arr.sort((a,b)=>a.system.localeCompare(b.system,"ru"));
+    if (sort === "time") arr.sort((a, b) => a.time.localeCompare(b.time, "ru"));
+    else if (sort === "system") arr.sort((a, b) => a.system.localeCompare(b.system, "ru"));
   }
   return arr;
 }
@@ -182,12 +190,14 @@ function renderPagination(total) {
   const pages = Math.max(1, Math.ceil(total / PER_PAGE));
   if (pages <= 1) return "";
   let html = '<nav aria-label="Пагинация"><ul class="pagination justify-content-center mt-4">';
-  html += '<li class="page-item' + (catState.page===1?" disabled":"") + '"><a class="page-link" href="#" data-pg="' + (catState.page-1) + '">‹</a></li>';
-  for (let i=1;i<=pages;i++) html += '<li class="page-item' + (i===catState.page?" active":"") + '"><a class="page-link" href="#" data-pg="' + i + '">' + i + '</a></li>';
-  html += '<li class="page-item' + (catState.page===pages?" disabled":"") + '"><a class="page-link" href="#" data-pg="' + (catState.page+1) + '">›</a></li>';
+  html += '<li class="page-item' + (catState.page === 1 ? " disabled" : "") + '"><a class="page-link" href="#" data-pg="' + (catState.page - 1) + '">‹</a></li>';
+  for (let i = 1; i <= pages; i++) html += '<li class="page-item' + (i === catState.page ? " active" : "") + '"><a class="page-link" href="#" data-pg="' + i + '">' + i + '</a></li>';
+  html += '<li class="page-item' + (catState.page === pages ? " disabled" : "") + '"><a class="page-link" href="#" data-pg="' + (catState.page + 1) + '">›</a></li>';
   html += '</ul></nav>';
   return html;
 }
+
+let catalogSwapTimer = null;
 
 function renderCatalog() {
   const cfg = CATALOG_CONFIG[catState.type];
@@ -201,12 +211,25 @@ function renderCatalog() {
   const total = list.length;
   const pages = Math.max(1, Math.ceil(total / PER_PAGE));
   if (catState.page > pages) catState.page = pages;
-  const slice = list.slice((catState.page-1)*PER_PAGE, catState.page*PER_PAGE);
-
-  grid.innerHTML = slice.length ? slice.map(cfg.card).join("") :
+  const slice = list.slice((catState.page - 1) * PER_PAGE, catState.page * PER_PAGE);
+  const html = slice.length ? slice.map(cfg.card).join("") :
     '<div class="col-12"><div class="alert alert-warning" role="alert">Ничего не найдено. Измените фильтры.</div></div>';
-  if (counter) counter.textContent = "Найдено: " + total;
-  if (pag) pag.innerHTML = renderPagination(total);
+
+  const commit = () => {
+    grid.innerHTML = html;
+    grid.classList.remove("grid-leaving");
+    if (counter) counter.textContent = "Найдено: " + total;
+    if (pag) pag.innerHTML = renderPagination(total);
+    if (typeof updateFavUI === "function") updateFavUI();
+  };
+
+  clearTimeout(catalogSwapTimer);
+  if (grid.children.length && (!window.MotionFX || MotionFX.isOn())) {
+    grid.classList.add("grid-leaving");
+    catalogSwapTimer = setTimeout(commit, 180);
+  } else {
+    commit();
+  }
 }
 
 function applyCatalogType(type) {
@@ -263,7 +286,7 @@ function initCatalog() {
     e.preventDefault();
     catState.page = parseInt(a.dataset.pg, 10);
     renderCatalog();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: (!window.MotionFX || MotionFX.isOn()) ? "smooth" : "auto" });
   });
 
   applyCatalogType(startType);
